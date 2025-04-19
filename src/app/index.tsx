@@ -1,7 +1,8 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import BoilerPlate from './BoilerPlate';
+import { Main } from './Main';
+
 
 const container = document.getElementById('root');
 const root = createRoot(container!);
-root.render(<BoilerPlate />);
+root.render(<Main />);

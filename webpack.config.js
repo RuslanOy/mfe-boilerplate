@@ -11,15 +11,22 @@ module.exports = (_, argv) => {
   // const headerRemote = 'header@https://ruslanoy.github.io/mfe-header/remoteEntry.js'
   // const footerRemote = 'footer@https://ruslanoy.github.io/mfe-footer/remoteEntry.js'
 
-  const publicPath = isProd
-    ? './'
-    : 'http://localhost:3000/';
+  const publicPath = isProd ? './' : 'http://localhost:3000/';
 
   return {
     mode: isProd ? 'production' : 'development',
-    entry: './src/bootstrap.js',
+    entry: './src/app/bootstrap.js',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+        app: path.resolve(__dirname, 'src/app'),
+        entities: path.resolve(__dirname, 'src/entities'),
+        features: path.resolve(__dirname, 'src/features'),
+        pages: path.resolve(__dirname, 'src/pages'),
+        shared: path.resolve(__dirname, 'src/shared'),
+        widgets: path.resolve(__dirname, 'src/widgets'),
+      },
     },
     module: {
       rules: [
@@ -61,7 +68,8 @@ module.exports = (_, argv) => {
         name: 'boilerplate',
         filename: 'remoteEntry.js',
         exposes: {
-          './BoilerPlate': './src/BoilerPlate',
+          './app': './src/app',
+          './Main': './src/app/Main.tsx',
         },
         // if its host app use this config, if not just delete and delete filename
         // remotes: {
