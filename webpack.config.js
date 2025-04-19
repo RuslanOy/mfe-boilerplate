@@ -1,3 +1,4 @@
+const path = require('path');
 const { ModuleFederationPlugin } = require('webpack').container;
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { DefinePlugin } = require('webpack');
@@ -21,7 +22,7 @@ module.exports = (_, argv) => {
 
   return {
     mode: isProd ? 'production' : 'development',
-    entry: './src/bootstrap',
+    entry: './src/bootstrap.js',
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx'],
     },
@@ -35,8 +36,7 @@ module.exports = (_, argv) => {
       ],
     },
     output: {
-      // if its host app use this config, if not just delete
-      // path: path.resolve(__dirname, 'dist'),
+      path: path.resolve(__dirname, 'dist'),
       filename: isProd ? '[name].[contenthash].js' : '[name].js',
       publicPath,
       clean: true,
@@ -63,10 +63,10 @@ module.exports = (_, argv) => {
     plugins: [
       new ModuleFederationPlugin({
         name: 'boilerplate',
+        filename: 'remoteEntry.js',
         exposes: {
           './BoilerPlate': './src/BoilerPlate',
         },
-        filename: 'remoteEntry.js',
         // if its host app use this config, if not just delete and delete filename
         // remotes: {
         //   header: headerRemote,
