@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkmfe_boilerplate=self.webpackChunkmfe_boilerplate||[]).push([[620],{620:(e,l,t)=>{t.r(l),t.d(l,{default:()=>n});var a=t(914),r=t.n(a);const n=()=>r().createElement("header",null,r().createElement("h1",null,"Boilerplate for fast start"))}}]);
