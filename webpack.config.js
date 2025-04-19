@@ -8,17 +8,12 @@ module.exports = (_, argv) => {
   const isProd = argv.mode === 'production';
 
   // if its host app use this config, if not just delete
-  // const headerRemote = isProd
-  //   ? 'header@https://remoteURL/mfe-header/remoteEntry.js'
-  //   : 'header@http://localhost:3001/remoteEntry.js';
-
-  // const footerRemote = isProd
-  //   ? 'footer@https://remoteURL/mfe-footer/remoteEntry.js'
-  //   : 'footer@http://localhost:3002/remoteEntry.js';
+  // const headerRemote = 'header@https://ruslanoy.github.io/mfe-header/remoteEntry.js'
+  // const footerRemote = 'footer@https://ruslanoy.github.io/mfe-footer/remoteEntry.js'
 
   const publicPath = isProd
-    ? 'https://remoteURL/mfe-boilerplate/'
-    : 'http://localhost:5173/';
+    ? './'
+    : 'http://localhost:3000/';
 
   return {
     mode: isProd ? 'production' : 'development',
@@ -38,13 +33,14 @@ module.exports = (_, argv) => {
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: isProd ? '[name].[contenthash].js' : '[name].js',
-      publicPath,
+      // publicPath,
+      publicPath: 'auto',
       clean: true,
     },
     devtool: isProd ? false : 'eval-source-map',
     devServer: !isProd
       ? {
-          port: 5173,
+          port: 3000,
           hot: true,
           historyApiFallback: true,
           headers: {
